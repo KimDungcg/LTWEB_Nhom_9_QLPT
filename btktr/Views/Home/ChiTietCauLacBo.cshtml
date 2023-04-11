@@ -1,0 +1,41 @@
+﻿
+@model btktr.Models.CauLacBo
+@{
+    ViewData["Title"] = "ChiTietCauLacBo";
+    Layout = "~/Views/Shared/LayoutBTL.cshtml";
+}
+
+
+    <div class="card card-body bg-warning" >
+        <section class="product">
+            <div class="product__photo">
+                <div class="photo-container">
+                    <div class="photo-main">
+                        <div class="controls">
+                            <i class="material-icons"></i>
+                            <i class="material-icons"></i>
+                        </div>
+                        <img src="@Url.Content("../imgclb/images/" +Model.Avatar)" alt="green apple slice">
+                    </div>
+
+                </div>
+            </div>
+       
+                <div class="product__info">
+                    <div class="title">
+                        <h1>@Model.DiachiClb</h1>
+
+                    </div>
+
+                    <div class="description">
+                        <h3>@Model.ChiTietClb</h3>
+                        <div>
+                            <a class="btn btn-primary">Các Bài Tập</a>
+                            <a class="btn btn-primary">Lịch Tập</a>
+                        </div>
+       
+           
+                    
+        </section>
+        </div>
+
