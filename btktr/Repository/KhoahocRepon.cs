@@ -17,6 +17,8 @@ namespace btktr.Repository
             return khoahocc;
         }
 
+        
+
         public Khoahoc delete(string Makhoahocc)
         {
             throw new NotImplementedException();
@@ -26,6 +28,8 @@ namespace btktr.Repository
         {
             return _context.Khoahocs;
         }
+
+       
 
         public Khoahoc GetKhoahoc(string Makhoahocc)
         {
@@ -38,5 +42,7 @@ namespace btktr.Repository
             _context.SaveChanges();
             return khoahocc;
         }
+
+      
     }
 }

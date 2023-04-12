@@ -3,7 +3,9 @@
     Layout = "~/Views/Shared/LayoutBTL.cshtml";
 }
 
-@model List<CauLacBo>
-@foreach(var @item in Model){
-    @await Html.PartialAsync("PatialCLB",item)
-}
+
+
+@Html.Partial("PatialCLB")
+
+
+

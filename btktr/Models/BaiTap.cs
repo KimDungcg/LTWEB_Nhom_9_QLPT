@@ -13,5 +13,8 @@ public partial class BaiTap
 
     public string? TenBaiTap { get; set; }
 
+    public virtual ICollection<Khoahoc> MaKhoaHocs { get; } = new List<Khoahoc>();
+
     public virtual ICollection<LichTap> MaLichTaps { get; } = new List<LichTap>();
+
 }

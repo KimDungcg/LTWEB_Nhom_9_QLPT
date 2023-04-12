@@ -20,4 +20,5 @@ public partial class CauLacBo
     public virtual ICollection<Khoahoc> MaKhoaHocs { get; } = new List<Khoahoc>();
 
     public virtual ICollection<Pt> MaPts { get; } = new List<Pt>();
+
 }

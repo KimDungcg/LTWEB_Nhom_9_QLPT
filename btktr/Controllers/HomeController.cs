@@ -1,5 +1,6 @@
 ﻿using btktr.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace btktr.Controllers
@@ -19,6 +20,7 @@ namespace btktr.Controllers
             var ListCLB = db.CauLacBos.ToList();
             return View(ListCLB);
         }
+        
         public IActionResult ChiTietCauLacBo(string MaCLB)
         {
             var CauLacBo = db.CauLacBos.SingleOrDefault(x=>x.MaClb == MaCLB);
@@ -36,5 +38,6 @@ namespace btktr.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       
     }
 }

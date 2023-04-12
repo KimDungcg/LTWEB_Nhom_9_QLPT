@@ -15,7 +15,7 @@ public partial class Khoahoc
 
     public virtual ICollection<CauLacBo> MaClbs { get; } = new List<CauLacBo>();
 
-    public virtual ICollection<LichTap> MaLichTaps { get; } = new List<LichTap>();
-
     public virtual ICollection<Pt> MaPts { get; } = new List<Pt>();
+
+    public virtual ICollection<BaiTap> MabaiTaps { get; } = new List<BaiTap>();
 }

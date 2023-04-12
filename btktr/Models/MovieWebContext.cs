@@ -41,7 +41,7 @@ public partial class MovieWebContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=NGUYEN-TRONG-VA;Initial Catalog=btltest1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+        => optionsBuilder.UseSqlServer("Data Source=NGUYEN-TRONG-VA;Initial Catalog=btltsualan3;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -59,6 +59,25 @@ public partial class MovieWebContext : DbContext
                 .HasMaxLength(2000)
                 .HasColumnName("ChiTietBT");
             entity.Property(e => e.TenBaiTap).HasMaxLength(20);
+
+            entity.HasMany(d => d.MaKhoaHocs).WithMany(p => p.MabaiTaps)
+                .UsingEntity<Dictionary<string, object>>(
+                    "ChiTietKhoaHoc",
+                    r => r.HasOne<Khoahoc>().WithMany()
+                        .HasForeignKey("MaKhoaHoc")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("fk_KhoaHoc_ChiTietKhoaHoc"),
+                    l => l.HasOne<BaiTap>().WithMany()
+                        .HasForeignKey("MabaiTap")
+                        .OnDelete(DeleteBehavior.ClientSetNull)
+                        .HasConstraintName("fk_baiTap_ChiTietKhoaHoc"),
+                    j =>
+                    {
+                        j.HasKey("MabaiTap", "MaKhoaHoc").HasName("pk_ChiTietKhoaHoc");
+                        j.ToTable("ChiTietKhoaHoc");
+                        j.IndexerProperty<string>("MabaiTap").HasMaxLength(20);
+                        j.IndexerProperty<string>("MaKhoaHoc").HasMaxLength(20);
+                    });
         });
 
         modelBuilder.Entity<CaLam>(entity =>
@@ -261,25 +280,6 @@ public partial class MovieWebContext : DbContext
                         j.ToTable("LichTap_BaiTap");
                         j.IndexerProperty<string>("MaLichTap").HasMaxLength(20);
                         j.IndexerProperty<string>("MaBaitap").HasMaxLength(20);
-                    });
-
-            entity.HasMany(d => d.MaKhoaHocs).WithMany(p => p.MaLichTaps)
-                .UsingEntity<Dictionary<string, object>>(
-                    "ChiTietKhoaHoc",
-                    r => r.HasOne<Khoahoc>().WithMany()
-                        .HasForeignKey("MaKhoaHoc")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("fk_KhoaHoc_ChiTietKhoaHoc"),
-                    l => l.HasOne<LichTap>().WithMany()
-                        .HasForeignKey("MaLichTap")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("fk_LichTap_ChiTietKhoaHoc"),
-                    j =>
-                    {
-                        j.HasKey("MaLichTap", "MaKhoaHoc").HasName("pk_ChiTietKhoaHoc");
-                        j.ToTable("ChiTietKhoaHoc");
-                        j.IndexerProperty<string>("MaLichTap").HasMaxLength(20);
-                        j.IndexerProperty<string>("MaKhoaHoc").HasMaxLength(20);
                     });
         });
 

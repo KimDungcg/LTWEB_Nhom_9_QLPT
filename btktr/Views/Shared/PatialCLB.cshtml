@@ -1,11 +1,13 @@
-﻿@model btktr.Models.CauLacBo
+﻿
+@model List<CauLacBo>
+@foreach(var @item in Model){
 <div class="col-sm-3">
     <div class="thumb-wrapper">
         <div class="img-box">
-            <img src="@Url.Content("../imgclb/images/" +Model.Avatar)" class="img-fluid" alt="">
+            <img src="@Url.Content("../imgclb/images/" +item.Avatar)" class="img-fluid" alt="">
         </div>
         <div class="thumb-content">
-            <h4>@Model.TenClb</h4>
+            <h4>@item.TenClb</h4>
             <div class="star-rating">
                 <ul class="list-inline">
                     <li class="list-inline-item"><i class="fa fa-star"></i></li>
@@ -16,10 +18,12 @@
                 </ul>
             </div>
 
-            <a asp-action="ChiTietCauLacBo" asp-controller="Home" asp-route-MaCLB="@Model.MaClb" class="btn btn-primary">Detail</a>
+            <a asp-action="ChiTietCauLacBo" asp-controller="Home" asp-route-MaCLB="@item.MaClb" class="btn btn-primary">Detail</a>
+                <a href="@Url.Action("LichTapTheoCauLacBo", "Home", new { maCLB = @item.MaClb })" class="btn btn-primary"> Baitap</a>
 
 
 
         </div>
     </div>
 </div>
+}

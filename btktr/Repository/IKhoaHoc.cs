@@ -1,15 +1,23 @@
 ﻿using btktr.Models;
+
 namespace btktr.Repository
 {
     public interface IKhoaHoc
     {
-        Khoahoc add( Khoahoc khoahocc );
-        Khoahoc update( Khoahoc khoahocc );
+       
+       
+            Khoahoc add(Khoahoc khoahocc);
 
-        Khoahoc delete(string Makhoahocc);
+            Khoahoc update(Khoahoc khoahocc);
 
-        Khoahoc GetKhoahoc(string Makhoahocc);
+            Khoahoc delete(string Makhoahocc);
 
-        IEnumerable<Khoahoc> GetAllkhoahoc();
-    }
+            Khoahoc GetKhoahoc(string Makhoahocc);
+
+            IEnumerable<Khoahoc> GetAllkhoahoc();
+
+
+        }
+    
+
 }

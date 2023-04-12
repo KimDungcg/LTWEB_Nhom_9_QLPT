@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 var connectionString =builder.Configuration.GetConnectionString("MovieWebContext");
 builder.Services.AddDbContext<MovieWebContext>(x=>x.UseSqlServer(connectionString));
 builder.Services.AddScoped<IKhoaHoc, KhoahocRepon>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
