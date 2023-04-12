@@ -1,8 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using btktr.Models;
+using btktr.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var connectionString =builder.Configuration.GetConnectionString("MovieWebContext");
+builder.Services.AddDbContext<MovieWebContext>(x=>x.UseSqlServer(connectionString));
+builder.Services.AddScoped<IKhoaHoc, KhoahocRepon>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

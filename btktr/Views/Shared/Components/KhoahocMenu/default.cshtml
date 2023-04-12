@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Khoahoc>
+<div class="so-categories">
+    <h5 class="title">course</h5>
+    <ul>
+        @foreach(var item in Model)
+        {
+            <li><a href="#"> @item.TenKhoaHoc <span></span></a></li>
+
+        }
+    
+    </ul>
+</div>
